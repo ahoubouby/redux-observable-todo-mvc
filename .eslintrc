@@ -3,7 +3,7 @@
     "browser": true
   },
   "parser": "babel-eslint",
-  "extends": "airbnb",
+  "jsxSingleQuote": false,
   "rules": {
     "no-underscore-dangle": ["error", { "allowAfterThis": true }]
   }

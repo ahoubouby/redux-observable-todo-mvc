@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import TodoTextInput from './TodoTextInput';
+import classnames from "classnames";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import TodoTextInput from "./TodoTextInput";
 
 export default class TodoItem extends Component {
   static propTypes = {
@@ -10,15 +10,17 @@ export default class TodoItem extends Component {
     editTodo: PropTypes.func.isRequired,
     deleteTodo: PropTypes.func.isRequired,
     completeTodo: PropTypes.func.isRequired,
-  }
-
-  state = {
-    editing: false,
+  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      editing: false,
+    };
   }
 
   handleDoubleClick = () => {
     this.setState({ editing: true });
-  }
+  };
 
   handleSave = (id, text) => {
     if (text.length === 0) {
@@ -27,7 +29,7 @@ export default class TodoItem extends Component {
       this.props.editTodo(id, text);
     }
     this.setState({ editing: false });
-  }
+  };
 
   render() {
     const { todo, completeTodo, deleteTodo } = this.props;
@@ -38,7 +40,7 @@ export default class TodoItem extends Component {
         <TodoTextInput
           text={todo.text}
           editing={this.state.editing}
-          onSave={text => this.handleSave(todo.id, text)}
+          onSave={(text) => this.handleSave(todo.id, text)}
         />
       );
     } else {
@@ -53,10 +55,7 @@ export default class TodoItem extends Component {
           <label htmlFor="itself" onDoubleClick={this.handleDoubleClick}>
             {todo.text}
           </label>
-          <button
-            className="destroy"
-            onClick={() => deleteTodo(todo.id)}
-          />
+          <button className="destroy" onClick={() => deleteTodo(todo.id)} />
         </div>
       );
     }
