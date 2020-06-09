@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import classnames from "classnames";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 
 export default class TodoTextInput extends Component {
   static propTypes = {
@@ -10,18 +10,18 @@ export default class TodoTextInput extends Component {
     placeholder: PropTypes.string,
     editing: PropTypes.bool,
     newTodo: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
-    text: '',
-    placeholder: '',
+    text: "",
+    placeholder: "",
     editing: false,
     newTodo: false,
-  }
+  };
 
   state = {
-    text: '',
-  }
+    text: "",
+  };
 
   componentWillReceiveProps(props) {
     this.setState({ test: props.text });
@@ -32,16 +32,16 @@ export default class TodoTextInput extends Component {
     if (e.which === 13) {
       this.props.onSave(text);
       if (this.props.newTodo) {
-        this.setState({ text: '' });
+        this.setState({ text: "" });
       }
     }
-  }
+  };
 
   handleChange = (e) => {
     this.setState({ text: e.target.value });
-  }
+  };
 
-  handleBlur = (e) => {
+  handleBlur(e) {
     if (!this.props.newTodo) {
       this.props.onSave(e.target.value);
     }
@@ -50,12 +50,10 @@ export default class TodoTextInput extends Component {
   render() {
     return (
       <input
-        className={
-          classnames({
-            edit: this.props.editing,
-            'new-todo': this.props.newTodo,
-          })
-        }
+        className={classnames({
+          edit: this.props.editing,
+          "new-todo": this.props.newTodo,
+        })}
         type="text"
         placeholder={this.props.placeholder}
         autoFocus="true"
